@@ -1,31 +1,31 @@
 
 const router = require('express').Router();
-const {deleteLogo, updateLogo, createLogo, getLogos} = require('../database/logos');
+const {deleteStore, updateStore, createStore, getStores} = require('../database/stores');
 
 router.get('/', async (req, res) => {
-  res.send(await getLogos());
+  res.send(await getStores());
 });
 
 router.post('/', async (apiRequest, apiResponse) => {
-  const newLogo = apiRequest.body;
-  await createLogo(newLogo);
+  const newStore = apiRequest.body;
+  await createStore(newStore);
   apiResponse.send({
-    message: 'New logo created.',
-    allLogos: await getLogos(),
+    message: 'New Store created.',
+    allStores: await getStores(),
   });
 });
 
-router.delete('/:logoId', async (apiRequest, apiResponse) => {
-  await deleteLogo(apiRequest.params.logoId);
-  apiResponse.send({ message: 'logo deleted.' });
+router.delete('/:storeId', async (apiRequest, apiResponse) => {
+  await deleteStore(apiRequest.params.storeId);
+  apiResponse.send({ message: 'Store deleted.' });
 });
 
-// endpoint to update a logo
-router.put('/:id', async (apiRequest, apiResponse) => {
-  const updatedLogo = apiRequest.body;
-  console.log({ updateLogo })
-  await updateLogo(apiRequest.params.id, updatedLogo);
-  apiResponse.send({ message: 'logo updated.' });
+// endpoint to update a Store
+router.put('/:storeId', async (apiRequest, apiResponse) => {
+  const updatedStore = apiRequest.body;
+  console.log({ updateStore })
+  await updateStore(apiRequest.params.storeId, updatedStore);
+  apiResponse.send({ message: 'Store updated.' });
 });
 
 module.exports = router;
