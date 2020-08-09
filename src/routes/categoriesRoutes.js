@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {deleteCategory, updateCategory, createCategory, getCategories} = require('../database/Categories');
+const {deleteCategory, updateCategory, createCategory, getCategories} = require('../database/categories');
 
 router.get('/', async (req, res) => {
   res.send(await getCategories());
@@ -10,12 +10,12 @@ router.post('/', async (apiRequest, apiResponse) => {
   await createCategory(newCategory);
   apiResponse.send({
     message: 'New Category created.',
-    allCategorys: await getCategorys(),
+    allCategories: await getCategories(),
   });
 });
 
-router.delete('/:CategoryId', async (apiRequest, apiResponse) => {
-  await deleteCategory(apiRequest.params.CategoryId);
+router.delete('/:categoryId', async (apiRequest, apiResponse) => {
+  await deleteCategory(apiRequest.params.categoryId);
   apiResponse.send({ message: 'Category deleted.' });
 });
 

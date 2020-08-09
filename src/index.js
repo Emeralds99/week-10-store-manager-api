@@ -4,7 +4,8 @@
 const {
   app,
   startDatabase
-} = require('./app-common.js')
+} = require('./app-common.js');
+const { request } = require('express');
 
 // endpoint to return top level api
 // much like a switch statement
@@ -17,6 +18,7 @@ app.get('/', async (req, res) => {
 app.use('/products', require('./routes/productsRoutes'))
 app.use('/logos', require('./routes/logosRoutes'))
 app.use('/stores', require('./routes/storesRoutes'))
+app.use('/categories', require('./routes/categoriesRoutes'))
 
 // connect to our database
 // https://www.mongodb.com/
